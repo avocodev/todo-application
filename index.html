@@ -4,48 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <section class="profile">
-    <div class="profile-users">
-      <div class="profile-img">
-        <img src="" alt="profile">
+  <main class="main-content">
+    <section class="profile">
+      <div class="profile-users">
+        <div class="profile-img">
+        </div>
+        <div class="profile-name">
+          <h1 class="js-name-user">Hi, Lorem👋</h1>
+          <p class="text-giving">Your daily adventure starts now</p>
+        </div>
       </div>
-      <div class="profile-name">
-        <h1>Hi, Lorem. 👋</h1>
-        <p class="text-giving">Your daily adventure starts now</p>
+      <div class="menu">
+        <img class="menu-icon" src="assets/icons/menu.png" alt="">
       </div>
-    </div>
-    <div class="menu">
-      <span>Menu</span>
-    </div>
-  </section>
+    </section>
+    
+    <section class="add-todo">
+      <ul>
+        <li class="input-todo-list">
+          <label for="task">Task</label>
+          <input type="text" id="task" class="task-todo">
+        </li>
+        <li class="submit-button">
+          <button class="add-button-todo">Submit</button>
+        </li>
+      </ul>
+    </section>
   
-  <section class="add-todo">
-    <ul>
-      <li>
-        <label for="task">Task</label>
-        <input type="text" id="task" class="task-todo">
-      </li>
-      <li>
-        <button class="add-button-todo">Submit</button>
-      </li>
-    </ul>
-  </section>
+    <section class="ongoing-task">
+      <div class="task">
+        <h1>Ongoing task</h1>
+        <ul class="list-task"></ul>
+      </div>
+    </section>
+  
+    <section class="completed-task"> 
+      <div class="task-completed">
+        <h1>Completed Task</h1>
+        <ul class="list-task-completed"></ul>
+      </div>
+    </section>  
+  </main>
 
-  <section class="ongoing-task">
-    <div class="task">
-      <h1>Ongoing task</h1>
-      <ul class="list-task"></ul>
-    </div>
-  </section>
-
-  <section class="completed-task"> 
-    <div class="task-completed">
-      <h1>Completed Task</h1>
-      <ul class="list-task-compeleted"></ul>
-    </div>
-  </section>
+  <footer>
+    <p style="text-align: center; color: grey; font-size: .7rem; margin-top: 50px;">Created by. avocodev</p>
+  </footer>
 
   <script src="data/taskTodo.js"></script>
   <script src="scripts/main.js"></script>

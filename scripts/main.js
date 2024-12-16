@@ -31,7 +31,9 @@ function renderPage() {
     todoHTML += `
       <li>
         <p>${value['task-name']}</p>
-        <button class="done-button js-done-button" data-button-id="${index}">Selesai</button>
+        <button class="done-button js-done-button" data-button-id="${index}"><img src="./assets/icons/check.png" alt="checked"/></button>
+
+        <span></span>
       </li>
     `;
   });
@@ -75,11 +77,12 @@ function completedRenderPage() {
     todoHTML += `
       <li>
         <p>${value['task-name']}</p>
-        <button class="delete-button js-delete-button" data-button-id="${index}">Hapus</button>
+        <button class="delete-button js-delete-button" data-button-id="${index}"><img src="./assets/icons/recycle-bin.png"/></button>
+        <span></span>
       </li>
     `;
     
-    document.querySelector('.list-task-compeleted').innerHTML = todoHTML;
+    document.querySelector('.list-task-completed').innerHTML = todoHTML;
   });
 }
 
@@ -92,8 +95,14 @@ deleteButtonElement.forEach((button) => {
     const { buttonId } = button.dataset;
     const index = Number(buttonId);
 
-    if (index !== -1 || index < 0) {
-      completedTask.splice(index, 1);
+    const deleteMessage = confirm('Serius pengen menghilangkan masa lalu?');
+
+    if (!deleteMessage) {
+      return;
+    } else {
+      if (index !== -1 || index < 0) {
+        completedTask.splice(index, 1);
+      }
     }
 
     saveDataTaskCompleted();
