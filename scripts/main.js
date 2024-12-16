@@ -15,9 +15,13 @@ buttonElement.addEventListener('click', () => {
     });
   }
 
+  saveDataTaskActive();
+
   renderPage();
 
   inputElement.value = '';
+
+  location.reload();
 });
 
 function renderPage() {
@@ -37,16 +41,8 @@ function renderPage() {
 
 renderPage();
 
-const completedTask = [
-  {
-    'task-name': 'Belajar JavaScript',
-    status: false
-  },
-  {
-    'task-name': 'Mandi wajib',
-    status: true
-  }
-];
+const completedTask = JSON.parse(localStorage.getItem('todo-completed')) || [];
+
 const activeButton = document.querySelectorAll('.js-done-button');
 
 activeButton.forEach((button) => {
@@ -56,13 +52,19 @@ activeButton.forEach((button) => {
 
     taskTodo.splice(buttonId, 1);
 
-    taskCompleted.status = true;
+    saveDataTaskActive();
 
+    taskCompleted.status = true;
+    
     completedTask.push(taskCompleted);
+
+    saveDataTaskCompleted();
 
     completedRenderPage();
 
     renderPage();
+
+    location.reload();
   });
 });
 
@@ -94,6 +96,18 @@ deleteButtonElement.forEach((button) => {
       completedTask.splice(index, 1);
     }
 
+    saveDataTaskCompleted();
+
     completedRenderPage();
+
+    location.reload();
   });
 });
+
+function saveDataTaskActive() {
+  localStorage.setItem('todo-application', JSON.stringify(taskTodo));
+}
+
+function saveDataTaskCompleted() {
+  localStorage.setItem('todo-completed', JSON.stringify(completedTask));
+}
