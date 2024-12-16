@@ -37,8 +37,34 @@ function renderPage() {
 
 renderPage();
 
-const completedTask = [];
+const completedTask = [
+  {
+    'task-name': 'Belajar JavaScript',
+    status: false
+  },
+  {
+    'task-name': 'Mandi wajib',
+    status: true
+  }
+];
 const activeButton = document.querySelectorAll('.js-done-button');
+
+activeButton.forEach((button) => {
+  button.addEventListener('click', () => {
+    const { buttonId } = button.dataset;
+    const taskCompleted = taskTodo[buttonId];
+
+    taskTodo.splice(buttonId, 1);
+
+    taskCompleted.status = true;
+
+    completedTask.push(taskCompleted);
+
+    completedRenderPage();
+
+    renderPage();
+  });
+});
 
 function completedRenderPage() {
   let todoHTML = '';
@@ -53,22 +79,21 @@ function completedRenderPage() {
     
     document.querySelector('.list-task-compeleted').innerHTML = todoHTML;
   });
-
-  console.log(todoHTML);
 }
 
-activeButton.forEach((button) => {
+completedRenderPage();
+
+const deleteButtonElement = document.querySelectorAll('.js-delete-button');
+
+deleteButtonElement.forEach((button) => {
   button.addEventListener('click', () => {
     const { buttonId } = button.dataset;
-    const taskCompleted = taskTodo[buttonId];
+    const index = Number(buttonId);
 
-    taskTodo.splice(buttonId, 1);
-
-    taskCompleted.status = true;
-    completedTask.push(taskCompleted);
+    if (index !== -1 || index < 0) {
+      completedTask.splice(index, 1);
+    }
 
     completedRenderPage();
-
-    renderPage();
   });
 });
